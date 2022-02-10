@@ -35,7 +35,8 @@ function App() {
 
   return (
     <main>
-      {todos && todos.length > 0 && renderList(todos)}
+      <h2>CancelToken demo</h2>
+      {todos && todos.length > 0 && renderList(todos) || 'Loading...'}
     </main>
   );
 }
