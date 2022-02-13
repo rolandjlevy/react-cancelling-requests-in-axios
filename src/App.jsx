@@ -12,19 +12,19 @@ function App() {
     </ul>
   );
 
-  // What problem does CancelToken solve? When we're trying to update state within the callback of a network request after the component has been destroyed
+  // The problem CancelToken solves: when we're trying to update state within the callback of a network request after the component has been destroyed, we don't want the callback to be  still hanging and waiting to get executed.
 
   useEffect(() => {
-    // the source variable holds the result of axios.CancelToken.source,
+    // the source variable holds the result of axios.CancelToken.source
     const source = axios.CancelToken.source();
     (async () => {
       try {
-        // send cancelToken - the data containing the source's token
+        // send cancelToken, the data containing the source's token
         const response = await axios.get(url, { cancelToken: source.token });
         setUsers(response.data.data);
       } catch (e) {
         if (axios.isCancel(e)) {
-          // axios request cancelled
+          // axios request gets cancelled
           return;
         }
       }
