@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
-
 function App() {
 
-  const [todos, setTodos] = useState({});
-  const url = 'https://jsonplaceholder.typicode.com/todos';
-
-  const labels = ['One', 'Two', 'Three', 'Four'];
+  const [users, setUsers] = useState([]);
+  const url = 'https://reqres.in/api/users?page=1';
 
   const renderList = (arr) => (
     <ul>
-      {arr.map(item => <li key={uuid()}>{item.title}</li>)}
+      {arr.map((item) => <li key={uuid()}>{item.first_name}{' '}{item.last_name}<p><img src={item.avatar} /></p><hr /></li>)}
     </ul>
   );
 
@@ -24,9 +21,12 @@ function App() {
       try {
         // send cancelToken - the data containing the source's token
         const response = await axios.get(url, { cancelToken: source.token });
-        setTodos(response.data);
+        setUsers(response.data.data);
       } catch (e) {
-        if (axios.isCancel(error)) return;
+        if (axios.isCancel(e)) {
+          // axios request cancelled
+          return;
+        }
       }
     })();
     // on unmount, cancel source's token from network request
@@ -36,7 +36,7 @@ function App() {
   return (
     <main>
       <h2>CancelToken demo</h2>
-      {todos && todos.length > 0 && renderList(todos) || 'Loading...'}
+      {users && users.length > 0 && renderList(users) || 'Loading...'}
     </main>
   );
 }

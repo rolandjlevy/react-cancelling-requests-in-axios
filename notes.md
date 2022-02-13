@@ -20,3 +20,7 @@ Then, along with our request we send an extra piece of data, `{ cancelToken: so
 
 Make sure to return a function from our useEffect that cancels our source's token:
 return () => source.cancel();
+
+### Help with mocking CancelToken
+
+- https://stackoverflow.com/questions/68673646/how-to-mock-axios-canceltoken-using-jest-and-enzyme
