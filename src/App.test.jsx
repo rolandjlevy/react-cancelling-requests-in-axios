@@ -15,13 +15,13 @@ import axios from 'axios';
 import App from './App';
 import users from './mockUsers';
 
-describe('Should check changing values and events resulting from clicks', () => {
+describe('should mock axios requests', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should mock axios requests', async () => {
+  it('should mock axios request for users, including cancelToken', async () => {
 
     const cancelTokenSource = { 
       cancel: jest.fn(), 
