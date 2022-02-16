@@ -41,10 +41,9 @@ describe('should mock axios requests', () => {
     screen.queryByRole('heading', { name: 'CancelToken demo'});
 
     await waitFor(() => {
-
-      expect(axios.CancelToken.source).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith('https://reqres.in/api/users?page=1', { cancelToken: { reason: { message: "user cancelled" } } } );
       expect(axios.get).toHaveBeenCalledTimes(1);
-      expect(axios.get).toHaveBeenCalledWith('https://reqres.in/api/users?page=1');
+      expect(axios.CancelToken.source).toHaveBeenCalledTimes(1);
     })
     
   });
