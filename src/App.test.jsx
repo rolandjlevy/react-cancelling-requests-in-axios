@@ -6,14 +6,13 @@ import {
   waitFor,
   logRoles
 } from '@testing-library/react';
-
 import userEvent from '@testing-library/user-event';
+import axios from 'axios';
 
 jest.mock('axios');
 
-import axios from 'axios';
 import App from './App';
-import users from './mockUsers';
+import { data } from './mockUsers';
 
 describe('should mock axios requests', () => {
 
@@ -34,7 +33,7 @@ describe('should mock axios requests', () => {
 
     jest.spyOn(axios.CancelToken, 'source').mockReturnValueOnce(cancelTokenSource);
 
-    jest.spyOn(axios, 'get').mockResolvedValueOnce({data: users.data });
+    jest.spyOn(axios, 'get').mockResolvedValueOnce({ data });
 
     render(<App />);
 

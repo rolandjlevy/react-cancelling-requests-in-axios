@@ -1,4 +1,4 @@
-const users = {
+export const users = {
    "page":1,
    "per_page":6,
    "total":12,
@@ -46,11 +46,5 @@ const users = {
          "last_name":"Ramos",
          "avatar":"https://reqres.in/img/faces/6-image.jpg"
       }
-   ],
-   "support":{
-      "url":"https://reqres.in/#support-heading",
-      "text":"To keep ReqRes free, contributions towards server costs are appreciated!"
-   }
+   ]
 };
-
-export default users;
